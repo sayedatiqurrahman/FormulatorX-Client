@@ -9,6 +9,7 @@ import Register from "../components/pages/Register";
 import SingleResponse from "../components/pages/SingleRespone";
 import Supports from "../components/pages/Supports";
 import Forms from "../components/pages/Forms";
+import Preview from "../components/pages/Preview";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
             {
                 path: 'forms',
                 element: <Forms />
+            },
+
+            {
+                path: "/preview",
+                element: <Preview />
             },
             {
                 path: 'responses',

@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSolidSave } from 'react-icons/bi';
 import { MdDragIndicator } from 'react-icons/md';
 import { BsFillTrash3Fill, BsPlusCircleFill } from 'react-icons/bs';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-const CategoriesQuestionInput = ({ addCategoriesQuestion }) => {
-    const [question, setQuestion] = useState('');
+const CategoriesQuestionInput = ({ addCategoriesQuestion, category }) => {
     const [addFieldCategory, setAddFieldCategory] = useState(['']);
     const [addFieldItems, setAddFieldItems] = useState(['']);
     const [allData, setAllData] = useState([]);
+
+    useEffect(() => {
+        if (category) {
+            if (category?.categories) {
+                setAddFieldCategory(category?.categories)
+            }
+            if (category?.closeOptions) {
+                setAddFieldCategory(category?.closeOptions)
+            }
+        }
+    }, [])
 
     const handleAddCategoryOption = () => {
         setAddFieldCategory([...addFieldCategory, '']);
@@ -41,7 +51,6 @@ const CategoriesQuestionInput = ({ addCategoriesQuestion }) => {
     const handleSaveQuestion = () => {
         const categoriesQuestion = {
             type: 'categories',
-            question,
             categories: addFieldCategory.filter((option) => option.trim() !== ''),
             items: addFieldItems.filter((option) => option.trim() !== ''),
             allData,
@@ -125,7 +134,7 @@ const CategoriesQuestionInput = ({ addCategoriesQuestion }) => {
                             {(provider) => (
                                 <div ref={provider.innerRef} {...provider.droppableProps}>
                                     {addFieldItems.map((option, index) => (
-                                        <Draggable draggableId={index.toString()} index={index}>
+                                        <Draggable key={index} draggableId={index.toString()} index={index}>
                                             {(provider) => (
                                                 <div ref={provider.innerRef} {...provider.draggableProps} {...provider.dragHandleProps} className="flex gap-3 mb-2 items-center">
                                                     <div className="w-full rounded-md bg-slate-200 flex gap-2 items-center">
