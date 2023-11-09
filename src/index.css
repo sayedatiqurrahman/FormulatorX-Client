@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.text-primary {
+    @apply text-[#1b2ec2] font-bold
+}
+
+.active {
+    @apply font-bold bg-[#1b2ec2] text-[#fff]
+}
+
+.default {
+    @apply md:mx-2 text-[#1b2ec2] font-bold hover:border-b border-[#ff60f4]
+}
+
+.btnPrimary {
+    @apply btn mt-2 bg-[#1b2ec2] text-white hover:text-[#1b2ec2] hover:border-2 hover:border-[#1b2ec2] font-bold
+}
+
+.MyContainer {
+    @apply lg:max-w-[1400px] md:max-w-[90%] max-w-[97%] mx-auto px-2
+}
